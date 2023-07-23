@@ -1,0 +1,12 @@
+
+
+
+function viewAllDepartments() {
+
+
+}
+
+function addADepartment() {
+
+    
+}

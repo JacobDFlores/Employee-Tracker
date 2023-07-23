@@ -1,11 +1,12 @@
 {
   "dependencies": {
+    "console.table": "^0.10.0",
     "express": "^4.17.1",
     "inquirer": "^8.2.4",
     "mysql2": "^2.2.5"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "name": "employee-tracker",
   "description": "command line application that helps a client manage their employee database",
