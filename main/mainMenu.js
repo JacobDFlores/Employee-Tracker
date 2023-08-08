@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const {viewAllEmployees, addAnEmployee,
       updateAnEmployee} = require('./choices/employee');
 const {viewAllDepartments, addDepartment} = require('./choices/department');
-  
+const {viewAllRoles, addRole} = require('./choices/roles'); 
 
 function mainMenu() {
 
@@ -28,8 +28,10 @@ function mainMenu() {
                 viewAllEmployees();
                 break;
             case 'View all roles':
+                viewAllRoles();
                 break;
             case 'View all departments':
+                viewAllDepartments();
                 break;
             case 'Add an employee':
                 break;

@@ -1,12 +1,11 @@
-
-
-
 function viewAllRoles() {
 
 
 }
 
-function addARole() {
+function addRole() {
 
     
 }
+
+module.exports = {viewAllRoles, addRole};
