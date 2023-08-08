@@ -1,12 +1,11 @@
-
-
-
 function viewAllDepartments() {
 
 
 }
 
-function addADepartment() {
+function addDepartment() {
 
     
 }
+
+module.exports = {viewAllDepartments, addDepartment};

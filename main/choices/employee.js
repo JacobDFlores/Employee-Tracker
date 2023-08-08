@@ -7,9 +7,15 @@ function viewAllEmployees() {
     empMenu
     .viewAll()
     .then((empTable) => {
+        console.log(`
+        `);
         console.table(empTable);
+        console.log('');
+    })
+    .then(() => {
+        main.mainMenu();
     });
-    main.mainMenu();
+    
 }
 
 function addAnEmployee() {

@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const {viewAllEmployees, addAnEmployee,
       updateAnEmployee} = require('./choices/employee');
+const {viewAllDepartments, addDepartment} = require('./choices/department');
+  
 
 function mainMenu() {
 
