@@ -34,10 +34,13 @@ function mainMenu() {
                 viewAllDepartments();
                 break;
             case 'Add an employee':
+                addAnEmployee();
                 break;
             case 'Add a role':
+                addRole();
                 break;
             case 'Add a department':
+                addDepartment();
                 break;
             case 'Update an employee':
 
