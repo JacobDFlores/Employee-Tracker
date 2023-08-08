@@ -43,6 +43,7 @@ function mainMenu() {
                 addDepartment();
                 break;
             case 'Update an employee':
+                updateAnEmployee();
 
         }
     });
