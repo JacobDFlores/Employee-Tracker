@@ -18,6 +18,16 @@ class Roles {
                 return table;
             });
     }
+
+    getRoleID(){
+        const sql = `SELECT * FROM roles WHERE roles.title='${this.title}'`
+        return db
+            .promise()
+            .query(sql)
+            .then(([role]) => {
+                return role;
+            })
+    }
 }
 
 module.exports = Roles;

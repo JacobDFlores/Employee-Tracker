@@ -31,7 +31,7 @@ function addAnEmployee() {
             let employeeArray = employeeTable.map(employee =>{
                 return `${employee.first_name} ${employee.last_name}`;
             });
-            employeeArray.push('none');
+            employeeArray.push('None');
 
             inquirer.prompt([
                 {
@@ -60,12 +60,38 @@ function addAnEmployee() {
                 },
                 ])
             .then(({first_name, last_name, role, manager}) => {
-                 
-                main.mainMenu();
-            });
+
+                
+                let manager_id = '';
+                if (manager == 'None'){
+                    manager_id = 'NULL'
+                }
+                else {
+                    const man = manager.split(' ');
+                    console.log(man)
+                    const findManager = new Employee(null, man[0], man[1], null, null );
+                    const findRole = new Roles(null, role, null, null);
+                    findManager.getManagerID()
+                    .then(([m]) =>{
+                        findRole.getRoleID()
+                        .then(([r]) =>{
+                            manager_id = m.id;
+                            let role_id = r.id;
+
+                            const newEmployee = new Employee(null, first_name, last_name, role_id, manager_id)
+                            newEmployee.addEmployee()
+
+                            //Just need to add employee to database now
+
+
+
+
+                        })
+                    })
+                }      
+            })
         })
     })
-
 }
 
 function updateAnEmployee() {

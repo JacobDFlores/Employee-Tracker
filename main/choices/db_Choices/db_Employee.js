@@ -1,5 +1,6 @@
 const db = require('../../../db/createConnection');
 const cTable = require('console.table');
+const Roles = require('./db_Roles');
 
 class Employee {
     constructor(id, first_Name, last_Name, role_Id, manager_Id){
@@ -19,6 +20,21 @@ class Employee {
                 return table;
             });
     }
+
+    getManagerID(){
+        const sql = `SELECT * FROM employee WHERE first_name='${this.first_Name}' AND last_name='${this.last_Name}'`
+        return db
+            .promise()
+            .query(sql)
+            .then(([manager]) => {
+                return manager;
+            })
+    }
+
+    addEmployee(){
+        
+    }
+
 }
 
 module.exports = Employee;
