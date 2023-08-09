@@ -1,3 +1,4 @@
+const inquirer = require('inquirer');
 const Roles = require('./db_Choices/db_Roles');
 const main = require('../mainMenu');
 

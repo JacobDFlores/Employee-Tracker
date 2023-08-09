@@ -1,4 +1,5 @@
-const Department = require('./db_Choices/db_Department')
+const inquirer = require('inquirer');
+const Department = require('./db_Choices/db_Department');
 const main = require('../mainMenu');
 
 function viewAllDepartments() {
