@@ -68,7 +68,6 @@ function addAnEmployee() {
                 }
                 else {
                     const man = manager.split(' ');
-                    console.log(man)
                     const findManager = new Employee(null, man[0], man[1], null, null );
                     const findRole = new Roles(null, role, null, null);
                     findManager.getManagerID()
@@ -80,6 +79,11 @@ function addAnEmployee() {
 
                             const newEmployee = new Employee(null, first_name, last_name, role_id, manager_id)
                             newEmployee.addEmployee()
+                            .then(() =>{
+                                console.log(`Added employee to database successfully
+                                `)
+                                main.mainMenu();
+                            })
 
                             //Just need to add employee to database now
 
