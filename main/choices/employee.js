@@ -60,36 +60,38 @@ function addAnEmployee() {
                 },
                 ])
             .then(({first_name, last_name, role, manager}) => {
-
                 
-                let manager_id = '';
+                const findRole = new Roles(null, role, null, null);
                 if (manager == 'None'){
-                    manager_id = 'NULL'
-                }
-                else {
-                    const man = manager.split(' ');
-                    const findManager = new Employee(null, man[0], man[1], null, null );
-                    const findRole = new Roles(null, role, null, null);
-                    findManager.getManagerID()
-                    .then(([m]) =>{
-                        findRole.getRoleID()
+                    findRole.getRoleID()
                         .then(([r]) =>{
-                            manager_id = m.id;
                             let role_id = r.id;
 
-                            const newEmployee = new Employee(null, first_name, last_name, role_id, manager_id)
+                            const newEmployee = new Employee(null, first_name, last_name, role_id, null)
                             newEmployee.addEmployee()
                             .then(() =>{
                                 console.log(`Added employee to database successfully
                                 `)
                                 main.mainMenu();
                             })
+                        })
+                }
+                else {
+                    const man = manager.split(' ');
+                    const findManager = new Employee(null, man[0], man[1], null, null );
+                    findManager.getManagerID()
+                    .then(([m]) =>{
+                        findRole.getRoleID()
+                        .then(([r]) =>{
+                            let role_id = r.id;
 
-                            //Just need to add employee to database now
-
-
-
-
+                            const newEmployee = new Employee(null, first_name, last_name, role_id, m.id)
+                            newEmployee.addEmployee()
+                            .then(() =>{
+                                console.log(`Added employee to database successfully
+                                `)
+                                main.mainMenu();
+                            })
                         })
                     })
                 }      
