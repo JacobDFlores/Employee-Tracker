@@ -14,11 +14,26 @@ function viewAllDepartments() {
     .then(() => {
         main.mainMenu();
     });
-
 }
 
 function addDepartment() {
-
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the name of the department?',
+            name: 'department',
+        },
+        ])
+        .then(({department}) =>{
+            const addDep = new Department(null, department);
+            addDep.addDepartment()
+            .then(() =>{
+                console.log(`
+                Department added successfully
+                `)
+                main.mainMenu()
+            })
+        })
     
 }
 

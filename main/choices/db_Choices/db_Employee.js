@@ -32,10 +32,8 @@ class Employee {
     }
 
     addEmployee(){
-        console.log(this.manager_Id)
         const sql = `INSERT INTO employee(first_name,last_name,role_id,manager_id) 
         VALUES ('${this.first_Name}','${this.last_Name}','${this.role_Id}',${this.manager_Id})`;
-        console.log(sql)
         return db
             .promise()
             .query(sql);

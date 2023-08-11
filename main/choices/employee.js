@@ -64,17 +64,18 @@ function addAnEmployee() {
                 const findRole = new Roles(null, role, null, null);
                 if (manager == 'None'){
                     findRole.getRoleID()
-                        .then(([r]) =>{
-                            let role_id = r.id;
+                    .then(([r]) =>{
+                        let role_id = r.id;
 
-                            const newEmployee = new Employee(null, first_name, last_name, role_id, null)
-                            newEmployee.addEmployee()
-                            .then(() =>{
-                                console.log(`Added employee to database successfully
-                                `)
-                                main.mainMenu();
-                            })
+                        const newEmployee = new Employee(null, first_name, last_name, role_id, null)
+                        newEmployee.addEmployee()
+                        .then(() =>{
+                            console.log(`
+                            Added employee to database successfully
+                            `)
+                            main.mainMenu();
                         })
+                    })
                 }
                 else {
                     const man = manager.split(' ');
