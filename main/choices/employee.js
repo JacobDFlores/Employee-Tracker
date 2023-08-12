@@ -25,8 +25,8 @@ function addAnEmployee() {
     const roles = new Roles();
     const managers = new Employee();
 
-    roles.viewAll().then((rolesTable) => {
-        managers.viewAll().then((employeeTable) =>{
+    roles.getAll().then((rolesTable) => {
+        managers.getAll().then((employeeTable) =>{
 
             let employeeArray = employeeTable.map(employee =>{
                 return `${employee.first_name} ${employee.last_name}`;
@@ -89,7 +89,8 @@ function addAnEmployee() {
                             const newEmployee = new Employee(null, first_name, last_name, role_id, m.id)
                             newEmployee.addEmployee()
                             .then(() =>{
-                                console.log(`Added employee to database successfully
+                                console.log(`
+Added employee to database successfully
                                 `)
                                 main.mainMenu();
                             })
@@ -102,8 +103,59 @@ function addAnEmployee() {
 }
 
 function updateAnEmployee() {
+    const employees = new Employee()
+    const roles = new Roles();
 
+    employees.getAll().then((empTable) =>{
+        roles.getAll().then((roleTable) =>{
 
+            let roleArray = roleTable.map((r) =>{
+                return `${r.title}`;
+            });
+
+            let empArray = empTable.map((e) =>{
+                return `${e.first_name} ${e.last_name}`;
+            });
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    message: 'Wich employee\'s role would you like to update?',
+                    choices: empArray,
+                    name: 'employee',
+                },
+                {
+                    type: 'list',
+                    message: 'What is the employee\'s new role?',
+                    choices: roleArray,
+                    name: 'role',
+                },
+                ])
+            .then(({employee, role}) => {
+
+                const man = employee.split(' ');
+                const findEmp = new Employee(null, man[0], man[1], null, null );
+                findEmp.getManagerID()
+                .then(([empRow]) =>{
+                    const findRole = new Roles(null, role, null, null);
+                    findRole.getRoleID()
+                    .then(([roleRow]) =>{
+                        const updateEmp = new Employee(empRow.id, null, null, roleRow.id, null );
+                        updateEmp.updateEmployee()
+                        .then(() =>{
+                            console.log(`
+Successfully updated Employee\'s role
+                            `)
+
+                            main.mainMenu();
+
+                        })
+                    })
+
+                })
+            })
+        })
+    }) 
 }
 
 module.exports = {viewAllEmployees, addAnEmployee, updateAnEmployee};

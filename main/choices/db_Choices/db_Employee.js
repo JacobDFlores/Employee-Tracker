@@ -12,13 +12,27 @@ class Employee {
     }
 
     viewAll(){
-        const sql = `SELECT * FROM employee`;
+        const sql = `SELECT
+        e.first_name AS 'First name',
+        e.last_name AS 'Last name',
+        r.title AS 'Role',
+        CONCAT(g.first_name,' ',g.last_name) AS Manager
+        FROM employee e
+        LEFT JOIN roles r ON r.id = e.role_id
+        LEFT JOIN employee g ON g.id = e.manager_id`;
         return db
             .promise()
             .query(sql)
             .then(([table]) => {
                 return table;
             });
+    }
+
+    getAll(){
+        const sql = `SELECT * FROM employee`
+        return db.promise().query(sql).then(([table]) =>{
+            return table;
+        })
     }
 
     getManagerID(){
@@ -37,6 +51,13 @@ class Employee {
         return db
             .promise()
             .query(sql);
+    }
+
+    updateEmployee(){
+        const sql = `UPDATE employee 
+        SET role_id='${this.role_Id}'  
+        WHERE id='${this.id}';`
+        return db.promise().query(sql);
     }
 
 }

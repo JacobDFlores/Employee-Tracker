@@ -23,13 +23,11 @@ function addRole() {
 
     const dep = new Department()
 
-    dep.viewAll().then((depTable) =>{
+    dep.getAll().then((depTable) =>{
 
         let depArray = depTable.map((d) =>{
             return `${d.dep_name}`;
         });
-
-        console.log(depArray)
 
         inquirer.prompt([
             {
@@ -51,7 +49,19 @@ function addRole() {
             ])
         .then(({role, salary, department}) => {
 
-            console.log(role, salary, department)
+            const getDep = new Department(null, department);
+            getDep.getDepartmentId()
+            .then(([d]) =>{
+                
+                const addRole = new Roles(null, role, salary, d.id);
+                addRole.addRole()
+                .then(() =>{
+                    console.log(`
+Successfully added role
+                    `)
+                    main.mainMenu();
+                })
+            })
         })
     })    
 }

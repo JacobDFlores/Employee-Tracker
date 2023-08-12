@@ -10,13 +10,33 @@ class Roles {
     }
 
     viewAll(){
-        const sql = `SELECT * FROM roles`;
+        const sql = `SELECT 
+        r.title,
+        r.salary,
+        d.dep_name AS Department
+        FROM roles r
+        INNER JOIN department d ON d.id = r.department_id`;
         return db
             .promise()
             .query(sql)
             .then(([table]) => {
                 return table;
             });
+    }
+
+    getAll(){
+        const sql = `SELECT * FROM roles`
+        return db.promise().query(sql).then(([table]) =>{
+            return table;
+        })
+    }
+
+    addRole(){
+        const sql = `INSERT INTO roles(title, salary, department_id) 
+        VALUES ('${this.title}', '${this.salary}', '${this.department_id}')`;
+        return db
+            .promise()
+            .query(sql);
     }
 
     getRoleID(){

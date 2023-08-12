@@ -9,7 +9,7 @@ function mainMenu() {
     inquirer.prompt([
     {
         type: 'list',
-        message: 'What do you want to do?',
+        message: `What do you want to do?`,
         name: 'mainMenu',
         choices:[
             'View all employees',
@@ -18,7 +18,8 @@ function mainMenu() {
             'Add an employee',
             'Add a role',
             'Add a department',
-            'Update an employee'
+            'Update an employee',
+            'Quit'
         ],
     },
     ])
@@ -44,7 +45,13 @@ function mainMenu() {
                 break;
             case 'Update an employee':
                 updateAnEmployee();
+                break;
+            case 'Quit':
 
+                console.log(`
+Application ended successfully
+                `);
+                process.exit(0);
         }
     });
 }
